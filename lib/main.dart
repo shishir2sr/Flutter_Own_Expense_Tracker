@@ -36,6 +36,12 @@ class MyHomePage extends StatelessWidget {
       title: 'Grocery',
       Id: 'T1',
       amount: 20,
+    ),
+    Transactions(
+      date: DateTime.now(),
+      title: 'Food & Drink',
+      Id: 'T1',
+      amount: 25,
     )
   ];
   final titleController = TextEditingController();
@@ -125,13 +131,13 @@ class MyHomePage extends StatelessWidget {
           Column(
             children: ls
                 .map((tx) => Card(
-                      shadowColor: Colors.orange,
+                      shadowColor: Colors.grey,
                       elevation: 2,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
                           Container(
-                            margin: EdgeInsets.fromLTRB(10, 5, 25, 5),
+                            margin: EdgeInsets.fromLTRB(15, 5, 35, 5),
                             padding: EdgeInsets.all(8),
                             child: Text(
                               tx.amount.toString(),
@@ -145,7 +151,7 @@ class MyHomePage extends StatelessWidget {
                               border: Border.all(
                                 color: Colors.orange,
                                 style: BorderStyle.solid,
-                                width: 2,
+                                width: 1,
                               ),
                             ),
                           ),
