@@ -108,7 +108,16 @@ class MyHomePage extends StatelessWidget {
                             BorderSide(color: Colors.orange, width: 1.0),
                       ),
                     ),
-                  )
+                  ),
+                  FlatButton(
+                      onPressed: () {
+                        print(amountController.text);
+                      },
+                      child: Text('Add Transaction',
+                          style: TextStyle(
+                            color: Colors.blueAccent,
+                            fontWeight: FontWeight.bold,
+                          )))
                 ],
               ),
             ),
