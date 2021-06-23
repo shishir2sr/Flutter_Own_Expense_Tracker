@@ -6,6 +6,15 @@ class newTransaction extends StatelessWidget {
   final Function addTx;
   newTransaction(this.addTx);
 
+  void submitData() {
+    final enteredTitle = _titleController.text;
+    final enteredAmount = double.parse(_amountController.text);
+    if (enteredTitle.isEmpty || enteredAmount <= 0) {
+      return;
+    }
+    addTx(enteredTitle, enteredAmount);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -15,6 +24,7 @@ class newTransaction extends StatelessWidget {
         child: Column(
           children: <Widget>[
             TextField(
+              keyboardType: TextInputType.text,
               controller: _titleController,
               decoration: InputDecoration(
                 focusedBorder: OutlineInputBorder(
@@ -25,12 +35,15 @@ class newTransaction extends StatelessWidget {
                 ),
                 labelText: 'Title',
               ),
+              onSubmitted: (_) =>
+                  submitData(), //'_' is used to avoid the error 'void function string'//
             ),
             SizedBox(
               width: double.infinity,
               height: 10.0,
             ),
             TextField(
+              keyboardType: TextInputType.number,
               controller: _amountController,
               decoration: InputDecoration(
                 labelText: 'Amount',
@@ -41,20 +54,19 @@ class newTransaction extends StatelessWidget {
                   borderSide: BorderSide(color: Colors.orange, width: 1.0),
                 ),
               ),
+              onSubmitted: (_) =>
+                  submitData(), //'_' is used to avoid the error 'void function string'//
             ),
             FlatButton(
-                onPressed: () {
-                  print(_amountController.text);
-                  addTx(
-                    _titleController.text,
-                    double.parse(_amountController.text),
-                  );
-                },
-                child: Text('Add Transaction',
-                    style: TextStyle(
-                      color: Colors.blueAccent,
-                      fontWeight: FontWeight.bold,
-                    )))
+              onPressed: submitData,
+              child: Text(
+                'Add Transaction',
+                style: TextStyle(
+                  color: Colors.blueAccent,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            )
           ],
         ),
       ),
