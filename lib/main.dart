@@ -19,8 +19,6 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatelessWidget {
   MyHomePage({Key key}) : super(key: key);
 
-  final titleController = TextEditingController();
-  final amountController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,6 +30,9 @@ class MyHomePage extends StatelessWidget {
             style: TextStyle(),
           ),
         ),
+        actions: <Widget>[
+          IconButton(icon: Icon(Icons.add), onPressed: () => {})
+        ],
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -54,6 +55,14 @@ class MyHomePage extends StatelessWidget {
           ),
           userTransaction()
         ],
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.teal,
+        child: Icon(
+          Icons.add,
+        ),
+        onPressed: () => {},
       ),
     );
   }
