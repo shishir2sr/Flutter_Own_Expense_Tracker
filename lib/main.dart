@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:own_expenditure/WIdgets/usertransaction.dart';
+import 'package:own_expenditure/WIdgets/newtransaction.dart';
+import 'Models/transaction.dart';
+
+import 'WIdgets/transactionlist.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,8 +19,49 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
   MyHomePage({Key key}) : super(key: key);
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  List<Transactions> _userTransactions = [
+    Transactions(
+      Id: 't1',
+      title: 'New Shoes',
+      amount: 69.99,
+      date: DateTime.now(),
+    ),
+    Transactions(
+      Id: 't2',
+      title: 'Weekly Groceries',
+      amount: 16.53,
+      date: DateTime.now(),
+    ),
+  ];
+
+  void _newUserTransaction(String txTitle, double txAmount) {
+    final newTx = Transactions(
+        title: txTitle, amount: txAmount, date: DateTime.now(), Id: 'ididid');
+    setState(() {
+      _userTransactions.add(newTx);
+    });
+  }
+
+  void _startNewTransaction(BuildContext ctx) {
+    showModalBottomSheet(
+      context: ctx,
+      builder: (_) {
+        return GestureDetector(
+          onTap: () {},
+          child: newTransaction(_newUserTransaction),
+          behavior: HitTestBehavior.opaque,
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +75,10 @@ class MyHomePage extends StatelessWidget {
           ),
         ),
         actions: <Widget>[
-          IconButton(icon: Icon(Icons.add), onPressed: () => {})
+          IconButton(
+            icon: Icon(Icons.add),
+            onPressed: () => _startNewTransaction(context),
+          )
         ],
       ),
       body: Column(
@@ -53,7 +100,7 @@ class MyHomePage extends StatelessWidget {
               elevation: 5,
             ),
           ),
-          userTransaction()
+          transactionList(_userTransactions)
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -62,7 +109,7 @@ class MyHomePage extends StatelessWidget {
         child: Icon(
           Icons.add,
         ),
-        onPressed: () => {},
+        onPressed: () => _startNewTransaction(context),
       ),
     );
   }
