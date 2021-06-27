@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:own_expenditure/WIdgets/newtransaction.dart';
 import 'Models/transaction.dart';
-
 import 'WIdgets/transactionlist.dart';
 
 void main() {
