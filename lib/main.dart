@@ -15,7 +15,6 @@ class MyApp extends StatelessWidget {
       title: 'Expenditure App',
       home: MyHomePage(),
       theme: ThemeData(
-        fontFamily: 'Yellowtail',
         primaryColor: Colors.teal,
         colorScheme: ColorScheme.fromSwatch(
           primarySwatch: Colors.teal,
@@ -24,7 +23,7 @@ class MyApp extends StatelessWidget {
         ),
         textTheme: const TextTheme(
             headline1: TextStyle(
-                fontFamily: 'Yellowtail',
+                // fontFamily: 'Yellowtail',
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
                 fontSize: 10),
