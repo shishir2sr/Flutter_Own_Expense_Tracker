@@ -14,6 +14,25 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Expenditure App',
       home: MyHomePage(),
+      theme: ThemeData(
+        fontFamily: 'Yellowtail',
+        primaryColor: Colors.teal,
+        colorScheme: ColorScheme.fromSwatch(
+          primarySwatch: Colors.teal,
+        ).copyWith(
+          secondary: Colors.green,
+        ),
+        textTheme: const TextTheme(
+            headline1: TextStyle(
+                fontFamily: 'Yellowtail',
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+                fontSize: 10),
+            bodyText1: TextStyle(color: Colors.grey),
+            bodyText2: TextStyle(
+              color: Colors.black,
+            )),
+      ),
     );
   }
 }
