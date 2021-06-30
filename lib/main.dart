@@ -81,11 +81,9 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.teal,
-        title: Center(
-          child: Text(
-            'OWN EXPENDITURE',
-            style: TextStyle(),
-          ),
+        title: Text(
+          'Personal Expenses',
+          style: TextStyle(),
         ),
         actions: <Widget>[
           IconButton(
