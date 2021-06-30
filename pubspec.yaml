@@ -59,13 +59,13 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Yellowtail
-  #     fonts:
-  #       - asset: Assets/fonts/Yellowtail-Regular.ttf
-  #         weight: 400
+  fonts:
+    - family: Yellowtail
+      fonts:
+        - asset: Assets/fonts/Yellowtail-Regular.ttf
+          
         
-  #         weight: 700
+          weight: 700
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'Expenditure App',
       home: MyHomePage(),
       theme: ThemeData(
+        fontFamily: 'Yellowtail',
         primaryColor: Colors.teal,
         colorScheme: ColorScheme.fromSwatch(
           primarySwatch: Colors.teal,
