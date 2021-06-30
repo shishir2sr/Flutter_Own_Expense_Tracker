@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:own_expenditure/WIdgets/newtransaction.dart';
 import 'Models/transaction.dart';
 import 'WIdgets/transactionlist.dart';
+import 'WIdgets/chart.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
       title: 'Expenditure App',
       home: MyHomePage(),
       theme: ThemeData(
-        fontFamily: 'Yellowtail',
+        fontFamily: 'Abril',
         primaryColor: Colors.teal,
         colorScheme: ColorScheme.fromSwatch(
           primarySwatch: Colors.teal,
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
         ),
         textTheme: const TextTheme(
             headline1: TextStyle(
-                // fontFamily: 'Yellowtail',
+                fontFamily: 'Abril',
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
                 fontSize: 10),
@@ -68,6 +69,13 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  List<Transactions> get _recentTransactions {
+    return _userTransactions
+        .where(
+            (tx) => tx.date.isAfter(DateTime.now().subtract(Duration(days: 7))))
+        .toList();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,21 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Container(
-            width: double.infinity,
-            child: Card(
-              child: Center(
-                child: Text(
-                  'Chart',
-                  style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
-              elevation: 5,
-            ),
-          ),
+          Chart(_recentTransactions),
           transactionList(_userTransactions)
         ],
       ),
