@@ -10,21 +10,24 @@ class transactionList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ls.isEmpty
         ? Center(
-            child: Card(
-              margin: EdgeInsets.all(10),
-              elevation: 2,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'No Transaction added!!',
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'No Transaction added!!',
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  height: 300,
+                  width: 350,
+                  child: Image.asset(
+                    'Assets/Images/Empty.jpg',
+                    fit: BoxFit.cover,
                   ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Image(image: AssetImage('Assets/Images/Empty.jpg'))
-                ],
-              ),
+                ),
+              ],
             ),
           )
         : Container(
