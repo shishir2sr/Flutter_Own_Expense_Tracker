@@ -92,7 +92,7 @@ class _newTransactionState extends State<newTransaction> {
               children: [
                 Expanded(
                     child: Text(_selectedDate == null
-                        ? 'No date choosen!!'
+                        ? 'No date chosen!'
                         : 'Picked Date: ${DateFormat.yMd().format(_selectedDate)}')),
                 FlatButton(
                     onPressed: _presentDatePicker,
