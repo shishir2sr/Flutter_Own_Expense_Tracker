@@ -17,7 +17,6 @@ class MyApp extends StatelessWidget {
       home: MyHomePage(),
       theme: ThemeData(
         errorColor: Colors.red,
-        fontFamily: 'Abril',
         primaryColor: Colors.teal,
         colorScheme: ColorScheme.fromSwatch(
           primarySwatch: Colors.teal,
