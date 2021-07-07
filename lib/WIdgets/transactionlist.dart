@@ -4,7 +4,11 @@ import 'package:intl/intl.dart';
 
 class transactionList extends StatelessWidget {
   final List<Transactions> ls;
-  transactionList(this.ls);
+  final Function fn;
+  transactionList(
+    this.ls,
+    this.fn,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -56,6 +60,13 @@ class transactionList extends StatelessWidget {
                     ),
                     title: Text(ls[index].title),
                     subtitle: Text(DateFormat.yMMMMd().format(ls[index].date)),
+                    trailing: IconButton(
+                      color: Theme.of(context).errorColor,
+                      icon: Icon(Icons.delete),
+                      onPressed: () {
+                        fn(ls[index].Id);
+                      },
+                    ),
                   ),
                 );
               },

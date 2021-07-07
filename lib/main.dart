@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
       title: 'Expenditure App',
       home: MyHomePage(),
       theme: ThemeData(
+        errorColor: Colors.red,
         fontFamily: 'Abril',
         primaryColor: Colors.teal,
         colorScheme: ColorScheme.fromSwatch(
@@ -51,9 +52,18 @@ class _MyHomePageState extends State<MyHomePage> {
   void _newUserTransaction(
       String txTitle, double txAmount, DateTime selectedDate) {
     final newTx = Transactions(
-        title: txTitle, amount: txAmount, date: selectedDate, Id: 'ididid');
+        title: txTitle,
+        amount: txAmount,
+        date: selectedDate,
+        Id: DateTime.now().toString());
     setState(() {
       _userTransactions.add(newTx);
+    });
+  }
+
+  void _deleteTransacion(String ID) {
+    setState(() {
+      _userTransactions.removeWhere((element) => element.Id == ID);
     });
   }
 
@@ -98,7 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Chart(_recentTransactions),
-          transactionList(_userTransactions)
+          transactionList(_userTransactions, _deleteTransacion)
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
