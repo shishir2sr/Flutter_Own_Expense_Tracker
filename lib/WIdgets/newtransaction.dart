@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class newTransaction extends StatefulWidget {
   final Function addTx;
@@ -12,15 +13,37 @@ class _newTransactionState extends State<newTransaction> {
   final _titleController = TextEditingController();
 
   final _amountController = TextEditingController();
+  DateTime _selectedDate;
 
   void submitData() {
     final enteredTitle = _titleController.text;
     final enteredAmount = double.parse(_amountController.text);
-    if (enteredTitle.isEmpty || enteredAmount <= 0) {
+    if (enteredTitle.isEmpty || enteredAmount <= 0 || _selectedDate == null) {
       return;
     }
-    widget.addTx(enteredTitle, enteredAmount);
+    widget.addTx(
+      enteredTitle,
+      enteredAmount,
+      _selectedDate,
+    );
     Navigator.of(context).pop();
+  }
+
+  void _presentDatePicker() {
+    showDatePicker(
+            context: context,
+            initialDate: DateTime.now(),
+            firstDate: DateTime(2019),
+            lastDate: DateTime.now())
+        .then((pickedDate) {
+      if (pickedDate == null) {
+        return;
+      } else {
+        setState(() {
+          _selectedDate = pickedDate;
+        });
+      }
+    });
   }
 
   @override
@@ -65,12 +88,29 @@ class _newTransactionState extends State<newTransaction> {
               onSubmitted: (_) =>
                   submitData(), //'_' is used to avoid the error 'void function string'//
             ),
-            FlatButton(
+            Row(
+              children: [
+                Expanded(
+                    child: Text(_selectedDate == null
+                        ? 'No date choosen!!'
+                        : 'Picked Date: ${DateFormat.yMd().format(_selectedDate)}')),
+                FlatButton(
+                    onPressed: _presentDatePicker,
+                    child: Text(
+                      'Select a date',
+                      style: TextStyle(
+                        color: Colors.orange,
+                      ),
+                    ))
+              ],
+            ),
+            RaisedButton(
               onPressed: submitData,
+              color: Colors.teal,
               child: Text(
                 'Add Transaction',
                 style: TextStyle(
-                  color: Colors.blueAccent,
+                  color: Colors.white,
                   fontWeight: FontWeight.bold,
                 ),
               ),
