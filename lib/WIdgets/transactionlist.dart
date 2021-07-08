@@ -13,9 +13,9 @@ class transactionList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ls.isEmpty
-        ? Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+        ? LayoutBuilder(builder: (ctx, constraints) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
                   'No Transaction added!!',
@@ -23,17 +23,19 @@ class transactionList extends StatelessWidget {
                 SizedBox(
                   height: 10,
                 ),
-                Container(
-                  height: 300,
-                  width: 350,
-                  child: Image.asset(
-                    'Assets/Images/Empty.jpg',
-                    fit: BoxFit.cover,
+                Center(
+                  child: Container(
+                    height: constraints.maxHeight * .5,
+                    width: constraints.maxWidth * 0.7,
+                    child: Image.asset(
+                      'Assets/Images/Empty.jpg',
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
               ],
-            ),
-          )
+            );
+          })
         : Container(
             height: 580,
             child: ListView.builder(
