@@ -90,8 +90,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    bool isLandscape =
-        MediaQuery.of(context).orientation == Orientation.landscape;
+    final mQuery = MediaQuery.of(context);
+    bool isLandscape = mQuery.orientation == Orientation.landscape;
 
     var appBar = AppBar(
       backgroundColor: Colors.teal,
@@ -108,7 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
 
     final txListWidget = Container(
-      height: (MediaQuery.of(context).size.height -
+      height: (mQuery.size.height -
               appBar.preferredSize.height -
               MediaQuery.of(context).padding.top) *
           .79,
