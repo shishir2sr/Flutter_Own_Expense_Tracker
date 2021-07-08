@@ -48,74 +48,80 @@ class _newTransactionState extends State<newTransaction> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Container(
-        padding: EdgeInsets.all(10),
-        margin: EdgeInsets.all(5),
-        child: Column(
-          children: <Widget>[
-            TextField(
-              keyboardType: TextInputType.text,
-              controller: _titleController,
-              decoration: InputDecoration(
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.orange, width: 1.0),
+    return SingleChildScrollView(
+      child: Card(
+        child: Container(
+          padding: EdgeInsets.only(
+              top: 10,
+              bottom: MediaQuery.of(context).viewInsets.bottom + 10,
+              left: 10,
+              right: 10),
+          margin: EdgeInsets.all(5),
+          child: Column(
+            children: <Widget>[
+              TextField(
+                keyboardType: TextInputType.text,
+                controller: _titleController,
+                decoration: InputDecoration(
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.orange, width: 1.0),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.orange, width: 1.0),
+                  ),
+                  labelText: 'Title',
                 ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.orange, width: 1.0),
-                ),
-                labelText: 'Title',
+                onSubmitted: (_) =>
+                    submitData(), //'_' is used to avoid the error 'void function string'//
               ),
-              onSubmitted: (_) =>
-                  submitData(), //'_' is used to avoid the error 'void function string'//
-            ),
-            SizedBox(
-              width: double.infinity,
-              height: 10.0,
-            ),
-            TextField(
-              keyboardType: TextInputType.number,
-              controller: _amountController,
-              decoration: InputDecoration(
-                labelText: 'Amount',
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.orange, width: 1.0),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.orange, width: 1.0),
-                ),
+              SizedBox(
+                width: double.infinity,
+                height: 10.0,
               ),
-              onSubmitted: (_) =>
-                  submitData(), //'_' is used to avoid the error 'void function string'//
-            ),
-            Row(
-              children: [
-                Expanded(
-                    child: Text(_selectedDate == null
-                        ? 'No date chosen!'
-                        : 'Picked Date: ${DateFormat.yMd().format(_selectedDate)}')),
-                FlatButton(
-                    onPressed: _presentDatePicker,
-                    child: Text(
-                      'Select a date',
-                      style: TextStyle(
-                        color: Colors.orange,
-                      ),
-                    ))
-              ],
-            ),
-            RaisedButton(
-              onPressed: submitData,
-              color: Colors.teal,
-              child: Text(
-                'Add Transaction',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
+              TextField(
+                keyboardType: TextInputType.number,
+                controller: _amountController,
+                decoration: InputDecoration(
+                  labelText: 'Amount',
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.orange, width: 1.0),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.orange, width: 1.0),
+                  ),
                 ),
+                onSubmitted: (_) =>
+                    submitData(), //'_' is used to avoid the error 'void function string'//
               ),
-            )
-          ],
+              Row(
+                children: [
+                  Expanded(
+                      child: Text(_selectedDate == null
+                          ? 'No date chosen!'
+                          : 'Picked Date: ${DateFormat.yMd().format(_selectedDate)}')),
+                  FlatButton(
+                      onPressed: _presentDatePicker,
+                      child: Text(
+                        'Select a date',
+                        style: TextStyle(
+                          color: Colors.orange,
+                        ),
+                      ))
+                ],
+              ),
+              RaisedButton(
+                onPressed: submitData,
+                color: Colors.teal,
+                child: Text(
+                  'Add Transaction',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
